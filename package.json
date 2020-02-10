@@ -1,7 +1,7 @@
 {
   "name": "grafana",
   "version": "1.0.0",
-  "description": "",
+  "description": "grafana",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,5 +10,17 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.19.2"
-  }
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LucasvMontenegro/grafana.git"
+  },
+  "bugs": {
+    "url": "https://github.com/LucasvMontenegro/grafana/issues"
+  },
+  "homepage": "https://github.com/LucasvMontenegro/grafana#readme",
+  "keywords": []
 }
