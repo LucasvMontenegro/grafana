@@ -1,25 +1,51 @@
 const axios = require("axios");
-require('dotenv/config');
+require("dotenv/config");
 
 const username = process.env.GRAFANA_USERNAME;
 const password = process.env.GRAFANA_PASSWORD;
 const url = `https://${username}:${password}@${process.env.GRAFANA_URL}`;
 
 const getUsers = async () => {
-  const res = await axios.get(url);
-  console.log(res.data)
-  return res.data;
+  let users = await axios.get(`${url}/users`);
+  console.log(users.data);
+  return users.data;
 };
 
-getUsers();
+//getUsers();
 
-// const getUsersById = async () => {
-//   users = await getUsers();
-//   userInfo = [];
-//   for (i = 0; i <= 5; i++) {
-//     userInfo[i] = { id: users[i].id, name: users[i].name };
-//   }
-//   console.log(userInfo);
-// };
+const getUserById = async id => {
+  const users = await axios.get(`${url}/users/${id}`);
+  console.log(users.data);
+  return users.data;
+};
 
-// getUsersById();
+//getUserById(2);
+
+const getUsersByProperty = async (property, value) => {
+  let users = await axios.get(`${url}/users`);
+  users = users.data;
+  for (i = 0; i <= 50; i++) {
+    switch (property) {
+      case "name":
+        const { name } = users[i];
+        if (name == value) {
+          console.log(name);
+          const { id } = users[i];
+          console.log('ID: ',id);
+          i = 50;
+        }
+        break;
+      case "email":
+        const { email } = users[i];
+        if (email == value) {
+          console.log(email);
+          const { id } = users[i];
+          console.log('ID: ',id);
+          i = 50;
+        }
+        break;
+    }
+  }
+};
+
+getUsersByProperty("email", "lucas.montenegro@somosphi.com");
